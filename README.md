@@ -36,7 +36,7 @@ Where:
 
 ## Compilation and Execution
 
-1. Clone the repository:
+1.Clone the repository:
    ```bash
-   git clone [https://github.com/YourUsername/vigenere-cipher-cpp.git](https://github.com/YourUsername/vigenere-cipher-cpp.git)
-   cd vigenere-cipher-cpp
+   git clone [https://github.com/YourUsername/YourRepository.git](https://github.com/YourUsername/YourRepository.git)
+   cd YourRepository
