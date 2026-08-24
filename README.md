@@ -1,35 +1,42 @@
-# Skywalker_Vignere_I_AM_THE_LAST_JEDI
-This repository highlights an early "discovery" I made into character manipulation, and ignited a lifelong passion for cryptography, eventually leading to me to study Cybersecurity. It features the Vignere Cypher and my C++ Implementation, both the original works featured as well as an optimized version, aimed at large scale crypto - analysis.
+# Vigenère Cipher CLI Utility
 
-Skywalker Vigenère: I AM THE LAST JEDI
+A modular C++ implementation of the classical polyalphabetic Vigenère cipher for encrypting and decrypting arbitrary text using modular arithmetic and character casing preservation.
 
-An accidental journey into ASCII manipulation, inspired by Star Wars, cryptography, and a mind that thinks in functions.
+## Overview
 
-Overview
+The Vigenère cipher is a method of encrypting alphabetic text by using a series of interwoven Caesar ciphers based on the letters of a keyword. This utility maps ASCII characters to zero-indexed alphabet coordinates ($0 \to 25$), aligns the keystream over variable-length input text, and applies algebraic transformations for both encryption and decryption.
 
-Skywalker_Vigenere_I_AM_THE_LAST_JEDI isn’t just another Vigenère cipher—it’s the product of an unexpected discovery. While implementing the classic encryption method, I stumbled upon a fascinating way to manipulate characters using their ASCII values, unlocking a new level of efficiency in text encryption. This project showcases both the original and an optimized version of the algorithm, blending historical cryptography with modern computational thinking.
+## Mathematical Formulation
 
-The name is a tribute to two great inspirations: Professor John Goulden, whose deep technical wisdom ignited my passion for computing, and Kadin, my husband, whose iconic response to my antics—"I am the last Jedi"—became legendary in our household.
+The core cryptographic transformations are defined as follows:
 
-Accidental Discovery: ASCII-Powered Optimization
+* **Encryption:**  
+  $$C_i = (P_i + K_i) \pmod{26}$$
 
-What started as a standard Vigenère cipher implementation turned into a realization that direct ASCII manipulation could enhance both encryption speed and efficiency. By leveraging numerical properties of characters instead of relying solely on string indexing, the optimized version reduces computational overhead and allows for smoother, more performant encryption and decryption.
+* **Decryption:**  
+  $$P_i = (C_i - K_i + 26) \pmod{26}$$
 
-Features
+Where:
+* $P_i$ is the integer index of the plaintext letter ($A = 0, B = 1, \dots, Z = 25$).
+* $K_i$ is the integer index of the corresponding key letter.
+* $C_i$ is the resulting ciphertext letter index.
+* The $+26$ offset in decryption ensures non-negative intermediate values before the modulo reduction in C++.
 
-Accidental ASCII Wizardry – Encrypts by directly manipulating character ASCII values for improved performance.
+## Key Technical Concepts Demonstrated
 
-Original & Optimized Implementations – Includes both the standard Vigenère method and the refined, high-performance version.
+* **Memory Efficiency via Pass-by-Reference:** Passes input text strings by constant reference (`const string&`) to eliminate unnecessary memory copying and dynamic reallocations in RAM.
+* **Modular Arithmetic & Cyclical Mapping:** Utilizes the modulo operator (`%`) to construct repeating keystreams and wrap alphabet boundaries.
+* **ASCII Normalization:** Calculates alphabetic shifts relative to baseline ASCII offsets (`'A'` = 65, `'a'` = 97) while preserving whitespace and punctuation.
+* **Defensive Console Input Handling:** Validates numeric menu inputs using `cin` stream checks and clears newline artifacts with `cin.ignore()`.
+* **Standard Modern Iteration:** Implements range-based loops (`for (char c : text)`) for readable sequence traversal.
 
-Efficient String Processing – Handles large text inputs seamlessly.
+## Prerequisites
 
-Readable, Modular C++ Code – Designed for clarity, modification, and further experimentation.
+* A C++ compiler supporting C++11 or higher (such as `g++` or `clang++`).
 
-C++ is strong with this one – Professor John Goulden
+## Compilation and Execution
 
-Why "Skywalker"?
-
-I wanted to throw back to both Professor John Goulden and my husband, Kadin, who have inspired me and love Star Wars.
-
-Because cryptography is like the Force—powerful, mysterious, and best understood by those who see beyond the surface. And sometimes, the greatest discoveries aren’t planned… they’re stumbled upon, hidden in the code, waiting to be unlocked.
-
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/YourUsername/vigenere-cipher-cpp.git](https://github.com/YourUsername/vigenere-cipher-cpp.git)
+   cd vigenere-cipher-cpp
